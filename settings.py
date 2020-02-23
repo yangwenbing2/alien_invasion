@@ -12,7 +12,8 @@ class Settings():
         self.ship_speed_factor = 50
 
         # 子弹的设置
-        self.bullet_speed_factor = 5
+        self.bullet_speed_factor = 10
         self.bullet_width = 3
         self.bullet_height = 15
         self.bullet_color = 60, 60, 60   #这是什么用法？？？
+        self.bullets_allowed = 10
