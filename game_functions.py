@@ -101,3 +101,23 @@ def create_fleet(ai_settings, screen, ship, aliens):
         for alien_number in range(number_aliens_x):
             create_alien(ai_settings, screen, aliens, alien_number,
                     row_number)
+
+def check_fleet_edges(ai_settings, aliens):
+    """有外星人到达边界时应采取措施"""
+    for alien in aliens.sprites():
+        if alien.check_edges():
+            change_fleet_direction(ai_settings, aliens)
+            break
+
+def change_fleet_direction(ai_settings, aliens):
+    """将外星人下移，并改变他们的方向"""
+    for alien in aliens.sprites():
+        alien.rect.y += ai_settings.fleet_drop_speed
+    ai_settings.fleet_direction *= -1
+
+def update_aliens(ai_settings, aliens):
+    """
+    检查是否有外星人位于屏幕边缘，并更新所有的外星人的位置
+    """
+    check_fleet_edges(ai_settings, aliens)
+    aliens.update()
