@@ -9,6 +9,7 @@ from game_stats import GameStats
 from ship import Ship
 from alien import Alien
 from button import Button
+from scoreboard import Scoreboard
 
 def run_game():
     # 初始化游戏并创建一个屏幕对象
@@ -23,6 +24,7 @@ def run_game():
 
     # 创建一个用于储存游戏统计的信息的实例
     stats = GameStats(ai_settings)
+    sb = Scoreboard(ai_settings, screen, stats)
 
     # 创建一艘飞船、一个子弹编组和一个外星人编组
     ship = Ship(ai_settings, screen)
@@ -43,7 +45,7 @@ def run_game():
             gf.update_bullets(ai_settings, screen, ship, aliens, bullets)
             gf.update_aliens(ai_settings, stats, screen, ship, aliens, bullets)
 
-        gf.update_screen(ai_settings, screen, stats, ship, aliens, bullets,
-                    play_button)
+        gf.update_screen(ai_settings, screen, stats, sb, ship, aliens, bullets,
+                play_button)
 
 run_game()
